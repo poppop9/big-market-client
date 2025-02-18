@@ -103,7 +103,6 @@ export default function RaffleMain(props) {
     return (<>
         <br/>
         <br/>
-        <br/>
         <div className={"flex justify-center"}>
             <LuckyWheel
                 ref={myLucky}
@@ -126,7 +125,7 @@ export default function RaffleMain(props) {
                                 myLucky.current.stop(index)
                             })
                             .catch(err => {
-                                alert("抽奖失败，请重试 : " + JSON.stringify(err.response))
+                                alert("抽奖失败，请重试 : " + JSON.stringify(err.response.data.message))
                                 myLucky.current.stop()
                                 throw err;
                             })
@@ -139,7 +138,6 @@ export default function RaffleMain(props) {
                 }}
             />
         </div>
-        <br/>
         <br/>
         <br/>
     </>)

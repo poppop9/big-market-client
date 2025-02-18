@@ -36,3 +36,19 @@ export function raffle() {
         throw err;
     });
 }
+
+/**
+ * 查询当前的抽奖次数
+ */
+export function findRaffleCount(){
+    return axios.get('/api/raffle/assemble/v1/findRaffleCount', {
+        params: {
+            activityId: DevConstant.Activity.activityId,
+        }
+    }).then(res => {
+        return res.data.data.raffleCount;
+    }).catch(err => {
+        console.log(err);
+        throw err;
+    });
+}
