@@ -57,7 +57,8 @@ export default function RaffleHeader(props) {
         <div className="navbar bg-base-100 shadow-sm">
             <div className="navbar-start">
                 <ul className="menu menu-horizontal px-1">
-                    <li><a className={"font-bold"}>💰 充值活动单</a></li>
+                    <li><a className={"font-bold"}>💲 充值活动单</a></li>
+                    <li><a className={"font-bold"}>🏆 积分兑奖</a></li>
                     <li>
                         <details>
                             <summary>Parent</summary>
@@ -67,7 +68,6 @@ export default function RaffleHeader(props) {
                             </ul>
                         </details>
                     </li>
-                    <li><a>Item 3</a></li>
                 </ul>
             </div>
             <div className="navbar-center">
@@ -127,10 +127,10 @@ export default function RaffleHeader(props) {
         </div>
 
         {/* 状态 */}
-        <div className="stats flex bg-white rounded-none">
+        <div className="stats flex bg-white rounded-none border-t-1 border-gray-200">
             <div className="stat py-2">
                 <div className="stat-figure">
-                    <svg t="1739713387693" className="icon text-warning fill-amber-400" viewBox="0 0 1024 1024"
+                    <svg t="1739713387693" className="icon fill-amber-400" viewBox="0 0 1024 1024"
                          version="1.1"
                          xmlns="http://www.w3.org/2000/svg" p-id="4387" width="50">
                         <path
@@ -138,25 +138,32 @@ export default function RaffleHeader(props) {
                             p-id="4388"></path>
                     </svg>
                 </div>
-                <div className="stat-title text-base">您当前已抽奖</div>
+                <div className="stat-title text-base">已抽奖</div>
                 <div className="stat-value text-warning text-2xl">{props.raffleCount} 次</div>
             </div>
             <div className="stat py-2">
                 <div className="stat-figure text-secondary">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        className="inline-block h-8 w-8 stroke-current text-primary">
+                    <svg t="1740059913663" className="icon" viewBox="0 0 1024 1024" version="1.1"
+                         xmlns="http://www.w3.org/2000/svg" p-id="2661" width="50">
                         <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            d="M551.253333 725.333333l52.906667-278.186667c69.973333-13.653333 122.88-75.093333 122.88-150.186667 0-85.333333-68.266667-153.6-153.6-153.6-85.333333 0-153.6 68.266667-153.6 153.6 0 56.32 29.013333 104.106667 73.386667 131.413333l-64.853333 296.96C290.133333 747.52 177.493333 836.266667 133.12 921.6l721.92 0C808.96 836.266667 692.906667 744.106667 551.253333 725.333333zM641.706667 215.04c8.533333 0 15.36 6.826667 15.36 15.36s-6.826667 15.36-15.36 15.36-15.36-6.826667-15.36-15.36S631.466667 215.04 641.706667 215.04zM619.52 377.173333c13.653333-10.24 27.306667-18.773333 40.96-49.493333 3.413333-8.533333 8.533333-20.48 1.706667-40.96 0 0-6.826667-15.36 5.12-18.773333 0 0 15.36-10.24 18.773333 35.84 0 0 0 42.666667-23.893333 71.68-6.826667 8.533333-10.24 11.946667-29.013333 29.013333-3.413333 3.413333-10.24 10.24-17.066667 8.533333C609.28 407.893333 595.626667 394.24 619.52 377.173333z"
+                            fill="#422AD5" p-id="2662"></path>
                     </svg>
                 </div>
-                <div className="stat-title text-base">您剩余的抽奖次数</div>
+                <div className="stat-title text-base">可用的抽奖次数</div>
                 <div className="stat-value text-primary text-2xl">222 次</div>
+            </div>
+            <div className="stat py-2">
+                <div className="stat-figure text-secondary">
+                    <svg t="1740060279395" className="icon" viewBox="0 0 1025 1024" version="1.1"
+                         xmlns="http://www.w3.org/2000/svg" p-id="5962" width="50">
+                        <path
+                            d="M874.032101 149.9439c-199.930533-199.930533-524.113669-199.930533-724.076201 0.031999s-199.930533 524.08167 0.031999 724.012203c199.962532 199.962532 524.113669 199.962532 724.044202 0.063998s199.962532-524.145668 0-724.1082zM628.31082 640.074498c-51.93458 51.93458-93.085455 106.205096-119.708727 154.747769-26.623272-48.542673-67.774147-102.813189-119.708727-154.747769s-106.205096-93.085455-154.747769-119.708727c48.542673-26.623272 102.813189-67.774147 154.747769-119.708727s93.085455-106.205096 119.708727-154.747769c26.623272 48.542673 67.774147 102.813189 119.708727 154.747769s106.205096 93.085455 154.747769 119.708727c-48.510674 26.623272-102.813189 67.806146-154.747769 119.708727z"
+                            fill="#00D390" p-id="5963"></path>
+                    </svg>
+                </div>
+                <div className="stat-title text-base">积分</div>
+                <div className="stat-value text-success text-2xl">222 次</div>
             </div>
         </div>
     </>)

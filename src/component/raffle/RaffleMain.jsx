@@ -101,9 +101,7 @@ export default function RaffleMain(props) {
     }, [props.awardList]);
 
     return (<>
-        <br/>
-        <br/>
-        <div className={"flex justify-center"}>
+        <div className={"bg-[#fa2255] bg-[url('src/assets/full-page.png')] bg-cover bg-center pt-12 pb-12 flex justify-center"}>
             <LuckyWheel
                 ref={myLucky}
                 width="500px"
@@ -129,7 +127,7 @@ export default function RaffleMain(props) {
                                 myLucky.current.stop()
                                 throw err;
                             })
-                    }, 2500)
+                    }, 2100)
                 }}
                 onEnd={prize => {  // 抽奖结束时触发
                     var prizeString = JSON.stringify(prize);
@@ -138,7 +136,5 @@ export default function RaffleMain(props) {
                 }}
             />
         </div>
-        <br/>
-        <br/>
     </>)
 }

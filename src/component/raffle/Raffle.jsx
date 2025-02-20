@@ -24,7 +24,7 @@ export default function Raffle() {
 
 
     return (
-        <div className={"bg-[#fa2255] bg-[url('src/assets/full-page.png')] bg-cover bg-center"}>
+        <div className={""}>
             <RaffleHeader
                 userInfo={userInfo} setUserInfo={setUserInfo}
                 isLogin={isLogin} setIsLogin={setIsLogin}
