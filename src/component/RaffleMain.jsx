@@ -1,6 +1,6 @@
 import {useState, useRef, useEffect} from 'react'
 import {LuckyWheel} from '@lucky-canvas/react'
-import {findAwardList, raffle} from "../../api/RaffleApi.js";
+import {findAwardList, raffle} from "../api/RaffleApi.js";
 import PropTypes from 'prop-types'; // 引入 prop-types
 
 // 明确类型

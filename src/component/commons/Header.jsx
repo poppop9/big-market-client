@@ -4,7 +4,7 @@ import {findAwardList} from "../../api/RaffleApi.js";
 import PropTypes from 'prop-types'; // 引入 prop-types
 
 // 明确类型
-RaffleHeader.propTypes = {
+Header.propTypes = {
     userInfo: PropTypes.object,
     setUserInfo: PropTypes.func,
     setIsLogin: PropTypes.func,
@@ -12,7 +12,7 @@ RaffleHeader.propTypes = {
     raffleCount: PropTypes.string
 };
 
-export default function RaffleHeader(props) {
+export default function Header(props) {
     /**
      * 变量
      */
@@ -57,21 +57,12 @@ export default function RaffleHeader(props) {
         <div className="navbar bg-base-100 shadow-sm">
             <div className="navbar-start">
                 <ul className="menu menu-horizontal px-1">
-                    <li><a className={"font-bold"}>💲 充值活动单</a></li>
-                    <li><a className={"font-bold"}>🏆 积分兑奖</a></li>
-                    <li>
-                        <details>
-                            <summary>Parent</summary>
-                            <ul className="p-2">
-                                <li><a>Submenu 1</a></li>
-                                <li><a>Submenu 2</a></li>
-                            </ul>
-                        </details>
-                    </li>
+                    <li><a className={"font-bold"} href={"/activity"}>🎫 活动单</a></li>
+                    <li><a className={"font-bold"} href={"/reward"}>🏆 积分兑奖</a></li>
                 </ul>
             </div>
             <div className="navbar-center">
-                <a className="text-3xl font-bold">🎁 抽奖活动平台 🎁</a>
+                <a className="text-3xl font-bold" href={"/"}>🎁 抽奖活动平台 🎁</a>
             </div>
             <div className="navbar-end">
                 {props.userInfo != null ? (
@@ -151,7 +142,7 @@ export default function RaffleHeader(props) {
                     </svg>
                 </div>
                 <div className="stat-title text-base">可用的抽奖次数</div>
-                <div className="stat-value text-primary text-2xl">222 次</div>
+                <div className="stat-value text-primary text-2xl">…… 次</div>
             </div>
             <div className="stat py-2">
                 <div className="stat-figure text-secondary">
@@ -163,7 +154,7 @@ export default function RaffleHeader(props) {
                     </svg>
                 </div>
                 <div className="stat-title text-base">积分</div>
-                <div className="stat-value text-success text-2xl">222 次</div>
+                <div className="stat-value text-success text-2xl">…… 次</div>
             </div>
         </div>
     </>)
