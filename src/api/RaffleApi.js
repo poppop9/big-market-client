@@ -40,7 +40,7 @@ export function raffle() {
 /**
  * 查询当前的抽奖次数
  */
-export function findRaffleCount(){
+export function findRaffleCount() {
     return axios.get('/api/raffle/assemble/v1/findRaffleCount', {
         params: {
             activityId: DevConstant.Activity.activityId,
@@ -51,4 +51,38 @@ export function findRaffleCount(){
         console.log(err);
         throw err;
     });
+}
+
+/**
+ * 查询用户的可用抽奖次数
+ */
+export async function findAvailableRaffleCount() {
+    try {
+        const res = await axios.get('/api/activity/v1/findAvailableRaffleCount', {
+            params: {
+                activityId: 10001
+            }
+        });
+        return res.data; // 返回格式：{ code: 100, message: "请求成功", data: { availableRaffleCount: 21 } }
+    } catch (error) {
+        console.error('获取可用抽奖次数失败:', error);
+        throw error;
+    }
+}
+
+/**
+ * 查询用户积分
+ */
+export async function findUserRewardAccountPoints() {
+    try {
+        const res = await axios.get('/api/reward/v1/findUserRewardAccountPoints', {
+            params: {
+                activityId: 10001
+            }
+        });
+        return res.data;
+    } catch (error) {
+        console.error('获取用户积分失败:', error);
+        throw error;
+    }
 }

@@ -1,6 +1,12 @@
 import {useState, useRef, useEffect} from 'react'
 import {LuckyWheel} from '@lucky-canvas/react'
-import {findAwardList, raffle} from "../api/RaffleApi.js";
+import {
+    findAvailableRaffleCount,
+    findAwardList,
+    findRaffleCount,
+    findUserRewardAccountPoints,
+    raffle
+} from "../api/RaffleApi.js";
 import PropTypes from 'prop-types'; // 引入 prop-types
 
 // 明确类型
@@ -101,7 +107,8 @@ export default function RaffleMain(props) {
     }, [props.awardList]);
 
     return (<>
-        <div className={"bg-[#fa2255] bg-[url('src/assets/full-page.png')] bg-cover bg-center pt-12 pb-12 flex justify-center"}>
+        <div
+            className={"bg-[#fa2255] bg-[url('src/assets/full-page.png')] bg-cover bg-center pt-12 pb-12 flex justify-center"}>
             <LuckyWheel
                 ref={myLucky}
                 width="500px"
@@ -129,10 +136,28 @@ export default function RaffleMain(props) {
                             })
                     }, 2100)
                 }}
-                onEnd={prize => {  // 抽奖结束时触发
+                onEnd={async (prize) => {
                     var prizeString = JSON.stringify(prize);
                     console.log("prize: ", prizeString);
-                    alert('恭喜你抽到 👉👉👉' + prize.fonts[0].text + ' 👈👈👈 奖品')
+                    alert('恭喜你抽到 👉👉👉' + prize.fonts[0].text + ' 👈👈👈 奖品');
+
+                    // 🎯 抽奖结束后刷新 raffleCount
+                    try {
+                        const newCount = await findRaffleCount();
+                        // eslint-disable-next-line react/prop-types
+                        props.setRaffleCount(newCount);  // 更新到 App 状态中
+
+                        const res = await findAvailableRaffleCount();
+                        const newAvailableCount = res?.data?.availableRaffleCount ?? 0; // 安全访问，默认值设为0
+                        // eslint-disable-next-line react/prop-types
+                        props.setAvailableRaffleCount(newAvailableCount);  // 更新到 App 状态中
+
+                        const res2 = await findUserRewardAccountPoints();
+                        // eslint-disable-next-line react/prop-types
+                        props.setPoints(res2?.data?.userRewardAccountPoints ?? 0); // 安全访问，默认值设为0
+                    } catch (e) {
+                        console.error('刷新 raffleCount 失败', e);
+                    }
                 }}
             />
         </div>

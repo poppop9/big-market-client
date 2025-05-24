@@ -142,7 +142,8 @@ export default function Header(props) {
                     </svg>
                 </div>
                 <div className="stat-title text-base">可用的抽奖次数</div>
-                <div className="stat-value text-primary text-2xl">…… 次</div>
+                {/* eslint-disable-next-line react/prop-types */}
+                <div className="stat-value text-primary text-2xl">{props.availableRaffleCount} 次</div>
             </div>
             <div className="stat py-2">
                 <div className="stat-figure text-secondary">
@@ -154,7 +155,8 @@ export default function Header(props) {
                     </svg>
                 </div>
                 <div className="stat-title text-base">积分</div>
-                <div className="stat-value text-success text-2xl">…… 次</div>
+                {/* eslint-disable-next-line react/prop-types */}
+                <div className="stat-value text-success text-2xl">{props.points} 个</div>
             </div>
         </div>
     </>)

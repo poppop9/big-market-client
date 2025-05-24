@@ -9,9 +9,14 @@ export default function Main(props) {
             <Route path={"/"} element={<RaffleMain
                 isLogin={props.isLogin}
                 awardList={props.awardList}
+                raffleCount={props.raffleCount}
                 setRaffleCount={props.setRaffleCount}
+                setAvailableRaffleCount={props.setAvailableRaffleCount}
+                setPoints={props.setPoints}
             />}/>
-            <Route path={"/activity"} element={<ActivityMain/>}/>
+            <Route path={"/activity"} element={<ActivityMain
+                setAvailableRaffleCount={props.setAvailableRaffleCount}
+            />}/>
             <Route path={"/reward"} element={<RewardMain/>}/>
             {/*<Route path={"/login"} element={<Login/>}/>*/}
             {/*<Route path={"/register"} element={<Register/>}/>*/}
