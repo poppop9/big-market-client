@@ -59,6 +59,7 @@ export default function Header(props) {
                 <ul className="menu menu-horizontal px-1">
                     <li><a className={"font-bold"} href={"/activity"}>🎫 活动单</a></li>
                     <li><a className={"font-bold"} href={"/reward"}>🏆 积分兑奖</a></li>
+                    <li><a className={"font-bold"} href={"/intermediateRecords"}>🎉 中奖记录</a></li>
                 </ul>
             </div>
             <div className="navbar-center">

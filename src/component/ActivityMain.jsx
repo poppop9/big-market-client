@@ -25,19 +25,14 @@ export default function ActivityMain(props) {
         try {
             const res = await axios.post("/api/activity/v1/rechargeAO", {
                 activityId: 10001,
-                activityOrderType: {
-                    activityOrderTypeName: "PAID_PURCHASE"
-                },
+                activityOrderType: {activityOrderTypeName: "PAID_PURCHASE"},
                 aoProductId: "1910937768625401856",
                 purchaseQuantity: quantity
             });
             const {code, message} = res.data;
 
-            if (code === 100) {
-                alert("充值活动单成功");
-            } else {
-                alert("充值活动单失败：" + message);
-            }
+            if (code === 100) alert("充值活动单成功");
+            else alert("充值活动单失败：" + message);
 
             const res2 = await findAvailableRaffleCount();
             const newAvailableCount = res2?.data?.availableRaffleCount ?? 0; // 安全访问，默认值设为0
@@ -117,22 +112,16 @@ export default function ActivityMain(props) {
                                             const response = await axios.patch('/api/activity/v1/cancelAO', null, {
                                                 params: {
                                                     activityOrderId: order.activityOrderIdStr,
-                                                },
+                                                }
                                             });
 
-                                            if (response.status === 200) {
-                                                alert('订单已成功取消');
-                                                // Optionally, refresh the order list or remove the canceled order from the UI
-                                            } else {
-                                                alert(`取消失败: ${response.data.message || '未知错误'}`);
-                                            }
+                                            if (response.status === 200) alert('订单已成功取消');
+                                            else alert(`取消失败: ${response.data.message || '未知错误'}`);
                                         } catch (error) {
-                                            // Handle network or server errors
                                             alert(`取消失败: ${error.response?.data?.message || error.message || '未知错误'}`);
                                         }
                                         fetchPendingOrders();
-                                    }}
-                                >
+                                    }}>
                                     取消订单
                                 </button>
                             </div>

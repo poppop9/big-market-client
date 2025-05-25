@@ -10,19 +10,15 @@ function App() {
     const [userInfo, setUserInfo] = useState(null)
     const [isLogin, setIsLogin] = useState(false);
     const [awardList, setAwardList] = useState([])
-    const [raffleCount, setRaffleCount] = useState('……')
+    const [raffleCount, setRaffleCount] = useState('0')
     const [availableRaffleCount, setAvailableRaffleCount] = useState(0)
     const [points, setPoints] = useState(0);
 
     useEffect(() => {
         // 查询登录用户信息
-        findLoginUserInfo().then(data => {
-            setUserInfo(data);
-        })
-        // 查询当前抽奖次数与可用的抽奖次数
-        findRaffleCount().then(data => {
-            setRaffleCount(data);
-        })
+        findLoginUserInfo().then(data => setUserInfo(data))
+        // 查询当前抽奖次数
+        findRaffleCount().then(data => setRaffleCount(data))
         // 查询可用抽奖次数
         findAvailableRaffleCount().then(res => {
             if (res.code === 100 && res.data) {
@@ -30,9 +26,9 @@ function App() {
             }
         })
         // 查询用户积分
-        findUserRewardAccountPoints().then(data => {
-            setPoints(data.data.userRewardAccountPoints);
-        })
+        findUserRewardAccountPoints().then(data =>
+            setPoints(data.data.userRewardAccountPoints)
+        )
     }, []);
 
     return (<>

@@ -119,21 +119,19 @@ export default function RaffleMain(props) {
                 onStart={() => {  // 点击抽奖时触发
                     myLucky.current.play()  // 调用该方法时，游戏才会开始
                     setTimeout(() => {
-                        raffle()
-                            .then(awardIdStr => {
-                                console.log("awardIdStr: ", JSON.stringify(awardIdStr));
+                        raffle().then(awardIdStr => {
+                            console.log("awardIdStr: ", JSON.stringify(awardIdStr));
 
-                                const index = prizes
-                                    .find(item => item.awardIdStr === awardIdStr)
-                                    .index;
-                                console.log("index: ", index);
-                                myLucky.current.stop(index)
-                            })
-                            .catch(err => {
-                                alert("抽奖失败，请重试 : " + JSON.stringify(err.response.data.message))
-                                myLucky.current.stop()
-                                throw err;
-                            })
+                            const index = prizes
+                                .find(item => item.awardIdStr === awardIdStr)
+                                .index;
+                            console.log("index: ", index);
+                            myLucky.current.stop(index)
+                        }).catch(err => {
+                            alert("抽奖失败，请重试 : " + JSON.stringify(err.response.data.message))
+                            myLucky.current.stop()
+                            throw err;
+                        })
                     }, 2100)
                 }}
                 onEnd={async (prize) => {
@@ -141,7 +139,6 @@ export default function RaffleMain(props) {
                     console.log("prize: ", prizeString);
                     alert('恭喜你抽到 👉👉👉' + prize.fonts[0].text + ' 👈👈👈 奖品');
 
-                    // 🎯 抽奖结束后刷新 raffleCount
                     try {
                         const newCount = await findRaffleCount();
                         // eslint-disable-next-line react/prop-types
