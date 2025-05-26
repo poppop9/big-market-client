@@ -37,8 +37,8 @@ function App() {
             isLogin={isLogin} setIsLogin={setIsLogin}
             awardList={awardList} setAwardList={setAwardList}
             raffleCount={raffleCount} setRaffleCount={setRaffleCount}
-            availableRaffleCount={availableRaffleCount}
-            points={points}
+            availableRaffleCount={availableRaffleCount} setAvailableRaffleCount={setAvailableRaffleCount}
+            points={points} setPoints={setPoints}
         />
         <Main
             userInfo={userInfo} setUserInfo={setUserInfo}

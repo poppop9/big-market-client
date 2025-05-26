@@ -55,6 +55,13 @@ export default function ActivityMain(props) {
 
             console.log("签到成功:", response.data);
             alert("✅ 签到成功！");
+            // 查询可用抽奖次数
+            findAvailableRaffleCount().then(res => {
+                if (res.code === 100 && res.data) {
+                    // eslint-disable-next-line react/prop-types
+                    props.setAvailableRaffleCount(res.data.availableRaffleCount)
+                }
+            })
         } catch (error) {
             console.error("签到失败:", error.response?.data || error.message);
             alert("❌ 签到失败，请稍后再试");

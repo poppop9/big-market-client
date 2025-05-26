@@ -1,6 +1,11 @@
 import {useEffect, useState} from "react";
-import {doLogin, logoutByToken} from "../../api/SecurityApi.js";
-import {findAwardList} from "../../api/RaffleApi.js";
+import {doLogin, findLoginUserInfo, logoutByToken} from "../../api/SecurityApi.js";
+import {
+    findAvailableRaffleCount,
+    findAwardList,
+    findRaffleCount,
+    findUserRewardAccountPoints
+} from "../../api/RaffleApi.js";
 import PropTypes from 'prop-types'; // 引入 prop-types
 
 // 明确类型
@@ -37,7 +42,32 @@ export default function Header(props) {
                 findAwardList().then(awardList => {
                     props.setAwardList(awardList);
                     console.log("奖品列表: ", awardList);
-                })
+                });
+
+                // 3. 获取登录用户信息
+                findLoginUserInfo().then(data => {
+                    props.setUserInfo(data);
+
+                    // 4. 获取当前抽奖次数
+                    findRaffleCount().then(data => {
+                        // eslint-disable-next-line react/prop-types
+                        props.setRaffleCount(data);
+                    });
+
+                    // 5. 获取可用抽奖次数
+                    findAvailableRaffleCount().then(res => {
+                        if (res.code === 100 && res.data) {
+                            // eslint-disable-next-line react/prop-types
+                            props.setAvailableRaffleCount(res.data.availableRaffleCount);
+                        }
+                    });
+
+                    // 6. 获取用户积分
+                    findUserRewardAccountPoints().then(data => {
+                        // eslint-disable-next-line react/prop-types
+                        props.setPoints(data.data.userRewardAccountPoints);
+                    });
+                });
 
                 // 3. 关闭 model
                 setLoginSuccess(true);
@@ -59,7 +89,7 @@ export default function Header(props) {
                 <ul className="menu menu-horizontal px-1">
                     <li><a className={"font-bold"} href={"/activity"}>🎫 活动单</a></li>
                     <li><a className={"font-bold"} href={"/reward"}>🏆 积分兑奖</a></li>
-                    <li><a className={"font-bold"} href={"/intermediateRecords"}>🎉 中奖记录</a></li>
+                    <li><a className={"font-bold"} href={"/intermediateRecords"}>🎉 中奖/兑奖记录</a></li>
                 </ul>
             </div>
             <div className="navbar-center">
@@ -72,7 +102,7 @@ export default function Header(props) {
                         <div tabIndex={0} role="button" className="btn m-1">👤 {props.userInfo.userName}</div>
                         <ul tabIndex={0}
                             className="dropdown-content menu bg-base-100 rounded-box z-1 p-2 shadow-base w-30">
-                            <li><a>Item 1</a></li>
+                            {/*<li><a>Item 1</a></li>*/}
                             <li><a onClick={() => {
                                 logoutByToken(props.userInfo.token);
                                 window.location.reload();  // 刷新页面

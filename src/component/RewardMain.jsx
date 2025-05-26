@@ -33,11 +33,9 @@ export default function RewardMain(props) {
                 exchangePrizesId: exchangePrizesId
             }
         }).then(res => {
-            if (res.data.code === 100) {
-                alert("兑换成功！");
-            } else {
-                alert("兑换失败：" + res.data.message);
-            }
+            if (res.data.code === 100) alert("兑换成功！");
+            else alert("兑换失败：" + res.data.message);
+
             findUserRewardAccountPoints().then(data =>
                 // eslint-disable-next-line react/prop-types
                 props.setPoints(data.data.userRewardAccountPoints)
